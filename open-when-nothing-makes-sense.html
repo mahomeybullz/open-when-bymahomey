@@ -53,5 +53,39 @@
 
     <p>and that’s already more than enough.</p>
   </div>
+ <div class="engagement">
+      👁️ <span id="views">38</span> views<br>
+      ❤️ <span id="likes">24</span> likes<br>
+      <button id="likeBtn" class="like-btn">Like this</button>
+    </div>
+  </div>
+
+  <audio autoplay loop>
+    <source src="sad.mp3" type="audio/mpeg" />
+  </audio>
+
+  <script>
+    const key = 'liked_open-when-nothing-makes-sense';
+    const viewsEl = document.getElementById('views');
+    const likesEl = document.getElementById('likes');
+    const btn = document.getElementById('likeBtn');
+
+    viewsEl.innerText = Math.floor(Math.random() * (43 - 35 + 1)) + 35;
+
+    if (localStorage.getItem(key)) {
+      btn.disabled = true;
+      btn.innerText = "You liked this";
+    }
+
+    btn.addEventListener('click', () => {
+      if (!localStorage.getItem(key)) {
+        let current = parseInt(likesEl.textContent);
+        likesEl.textContent = current + 1;
+        localStorage.setItem(key, 'true');
+        btn.disabled = true;
+        btn.innerText = "You liked this";
+      }
+    });
+  </script>
 </body>
 </html>
