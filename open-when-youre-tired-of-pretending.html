@@ -37,6 +37,25 @@
       font-size: 1rem;
       color: #fce4ec;
     }
+    .engagement {
+      margin-top: 2rem;
+      text-align: center;
+      color: #ffdee9;
+      font-size: 0.9rem;
+    }
+    .like-btn {
+      background: none;
+      color: #ff7eb9;
+      border: 1px dashed #ff7eb9;
+      padding: 0.4rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 0.5rem;
+    }
+    .like-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
   </style>
 </head>
 <body>
@@ -66,10 +85,41 @@
       mahal kita. kahit sa mga araw na feeling mo walang nagmamahal sa'yo.<br>
       — by MAHOMEY BULWAYAN LD.
     </div>
+
+    <div class="engagement">
+      👁️ <span id="views">34</span> views<br>
+      ❤️ <span id="likes">21</span> likes<br>
+      <button id="likeBtn" class="like-btn">Like this</button>
+    </div>
   </div>
 
   <audio autoplay loop>
     <source src="sad.mp3" type="audio/mpeg" />
   </audio>
+
+  <script>
+    const key = 'liked_open-when-tired';
+    const viewsEl = document.getElementById('views');
+    const likesEl = document.getElementById('likes');
+    const btn = document.getElementById('likeBtn');
+
+    // Randomize view count
+    viewsEl.innerText = Math.floor(Math.random() * (43 - 27 + 1)) + 27;
+
+    if (localStorage.getItem(key)) {
+      btn.disabled = true;
+      btn.innerText = "You liked this";
+    }
+
+    btn.addEventListener('click', () => {
+      if (!localStorage.getItem(key)) {
+        let current = parseInt(likesEl.textContent);
+        likesEl.textContent = current + 1;
+        localStorage.setItem(key, 'true');
+        btn.disabled = true;
+        btn.innerText = "You liked this";
+      }
+    });
+  </script>
 </body>
 </html>
