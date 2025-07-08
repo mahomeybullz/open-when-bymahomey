@@ -48,5 +48,42 @@ Tao ka. At mahal ka pa rin kahit hindi ka okay.
 
 If today all you did was breathe — I’m proud of you for that.
     you don’t have to carry everything alone. not this time.</div>
+
+  
+    <div class="engagement">
+      👁️ <span id="views">32</span> views<br>
+      ❤️ <span id="likes">20</span> likes<br>
+      <button id="likeBtn" class="like-btn">Like this</button>
+    </div>
+  </div>
+
+  <audio autoplay loop>
+    <source src="sad.mp3" type="audio/mpeg" />
+  </audio>
+
+  <script>
+    const key = 'liked_open-when-give-up';
+    const viewsEl = document.getElementById('views');
+    const likesEl = document.getElementById('likes');
+    const btn = document.getElementById('likeBtn');
+
+    // Fake view count
+    viewsEl.innerText = Math.floor(Math.random() * (43 - 28 + 1)) + 28;
+
+    if (localStorage.getItem(key)) {
+      btn.disabled = true;
+      btn.innerText = "You liked this";
+    }
+
+    btn.addEventListener('click', () => {
+      if (!localStorage.getItem(key)) {
+        let current = parseInt(likesEl.textContent);
+        likesEl.textContent = current + 1;
+        localStorage.setItem(key, 'true');
+        btn.disabled = true;
+        btn.innerText = "You liked this";
+      }
+    });
+  </script>
 </body>
 </html>
