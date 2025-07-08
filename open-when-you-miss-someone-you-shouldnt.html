@@ -45,5 +45,41 @@ Deserve mo yung buong-buo. Yung walang games. Yung ikaw talaga pinipili.
     okay lang. feelings don’t always follow logic.
 
     pero sana, sa gitna ng pagkamiss mo, hindi mo makalimutan kung bakit ka lumayo.</div>
+
+  <div class="engagement">
+      👁️ <span id="views">36</span> views<br>
+      ❤️ <span id="likes">25</span> likes<br>
+      <button id="likeBtn" class="like-btn">Like this</button>
+    </div>
+  </div>
+
+  <audio autoplay loop>
+    <source src="sad.mp3" type="audio/mpeg" />
+  </audio>
+
+  <script>
+    const key = 'liked_open-when-miss-wrong-person';
+    const viewsEl = document.getElementById('views');
+    const likesEl = document.getElementById('likes');
+    const btn = document.getElementById('likeBtn');
+
+    // Fake view count
+    viewsEl.innerText = Math.floor(Math.random() * (43 - 32 + 1)) + 32;
+
+    if (localStorage.getItem(key)) {
+      btn.disabled = true;
+      btn.innerText = "You liked this";
+    }
+
+    btn.addEventListener('click', () => {
+      if (!localStorage.getItem(key)) {
+        let current = parseInt(likesEl.textContent);
+        likesEl.textContent = current + 1;
+        localStorage.setItem(key, 'true');
+        btn.disabled = true;
+        btn.innerText = "You liked this";
+      }
+    });
+  </script>
 </body>
-</html>
+</html>  
